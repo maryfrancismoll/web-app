@@ -1,4 +1,3 @@
-<!DOCTYPE html> 
 <html>
     <head>
         <meta charset="utf-8">
@@ -10,27 +9,34 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
         <script src="main.js"></script>
     </head>
-    <body>
+    <body onload="showWelcome()">
+        <!-- <div class="container">
+            <h1>Homes & Spaces <small>by Kitchie</small></h1> 
+        </div> -->
         <nav class="navbar navbar-light bg-light justify-content-between navbar-toggleable-sm">
             <a class="navbar-brand" href="#">Homes & Spaces</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+                    <span class="navbar-toggler-icon"></span>
+                </button>
             <div id="navbarNavDropdown" class="navbar-collapse">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Browse <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="#">Browse</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="newspace.html">Post</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav">
                     <li class="nav-item d-inline-block">
-                        <a class="nav-link" href="login.html">Login</a>
+                        <a class="nav-link" href="myspaces.html">My Spaces</a>
                     </li>
-                    <li class="nav-item d-inline-block">
-                        <a class="nav-link" href="register.html">Register</a>
-                    </li>
+                    <button onclick="logout()">Logout</button>
                 </ul>
             </div>
         </nav>
+        <div id="user-div" class="jumbotron">
+            
+        </div>
     </body>
 </html>
