@@ -9,7 +9,7 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
         <script src="main.js"></script>
     </head>
-    <body onload="showWelcome()">
+    <body onload="showWelcome();">
         <!-- <div class="container">
             <h1>Homes & Spaces <small>by Kitchie</small></h1> 
         </div> -->
@@ -31,6 +31,15 @@
                     <li class="nav-item d-inline-block">
                         <a class="nav-link" href="myspaces.html">My Spaces</a>
                     </li>
+                    <script>
+                        if (getAuthority() === 'ADMIN'){
+                            document.write(
+                                '<li class="nav-item d-inline-block active">' +
+                                    '<a class="nav-link" href="categories.html">Categories</a>' +
+                                '</li>');
+                        }
+                        
+                    </script>
                     <button onclick="logout()">Logout</button>
                 </ul>
             </div>
@@ -38,5 +47,6 @@
         <div id="user-div" class="jumbotron">
             
         </div>
+        <button onclick="getAuthority();">Click</button>
     </body>
 </html>

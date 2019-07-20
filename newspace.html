@@ -21,13 +21,22 @@
                         <a class="nav-link" href="home.html">Browse </a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link active" href="#">Post <span class="sr-only">(current)</span></a>
+                        <a class="nav-link active" href="#">Post</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav">
                     <li class="nav-item d-inline-block">
                         <a class="nav-link" href="myspaces.html">My Spaces</a>
                     </li>
+                    <script>
+                        if (getAuthority() === 'ADMIN'){
+                            document.write(
+                                '<li class="nav-item d-inline-block active">' +
+                                    '<a class="nav-link" href="categories.html">Categories</a>' +
+                                '</li>');
+                        }
+                        
+                    </script>
                     <button onclick="logout()">Logout</button>
                 </ul>
             </div>
