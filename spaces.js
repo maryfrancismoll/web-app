@@ -1,5 +1,5 @@
-const ROOT_API_URL = 'http://localhost:9090';
-const ROOT_FE_URL = 'http://localhost:9191/web-app';
+// const ROOT_API_URL = 'http://localhost:9090';
+// const ROOT_FE_URL = 'http://localhost:9191/web-app';
 
 getToken = () => {
     //get token from session storage
@@ -18,7 +18,7 @@ saveNewSpace = () => {
     //get values from form
     const title = document.getElementById('title').value;
     const description = document.getElementById('description').value;
-    const categoryId = 1; // document.getElementById('category').value;
+    const categoryId = document.getElementById('category').value;
     const address = document.getElementById('address').value;
     const dailyRate = document.getElementById('dailyRate').value;
 
@@ -33,35 +33,7 @@ saveNewSpace = () => {
         address: address
     }
 
-    /*
-    const xhr = new XMLHttpRequest();
-    xhr.open('POST', ROOT_API_URL + '/space', true);
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.setRequestHeader("Authorization", 'Bearer ' + getToken());
-    xhr.onreadystatechange = function() { // Call a function when the state changes.
-        if (this.readyState === XMLHttpRequest.DONE && this.status === 201) {
-            // Request finished. Do processing here.
-            console.log("status was okay");
-            alert(this.response);
-            //resolve(xhr.response);
-            //redirect to user's list of spaces when successful
-            window.location.replace(ROOT_FE_URL + '/myspaces.html');
-        }else if (this.readyState === XMLHttpRequest.DONE && this.status === 401){
-            console.log("request failed");
-            console.log('status for failing: ', this.status);
-            //reject(xhr.status);
-            // access issue, redirect to login
-            alert("You need to be logged in to post a space or your access has expired.");
-            window.location.replace(ROOT_FE_URL + '/login.html');
-        }
-    }
-      
-    xhr.ontimeout = function () {
-        reject('timeout')
-      }
-
-    xhr.send(JSON.stringify(space));
-    */
+    console.log('space: ', space);
 
     sendRequest('POST', '/space', space, 201, true);
 }
@@ -276,4 +248,50 @@ deleteSpace = (id) => {
 
         xhr.send();
     }
+}
+
+initializeSpaceForm = () => {
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', ROOT_API_URL + '/category', true);
+    xhr.onreadystatechange = function() { // Call a function when the state changes.
+        if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+            // Request finished. Do processing here.
+            console.log("status was okay");
+            console.log(this.response);
+            // resolve(xhr.response);
+
+            // display in table
+            displayCategories(JSON.parse(this.response));
+        }else if (this.readyState === XMLHttpRequest.DONE && this.status === 401){
+            console.log("request failed");
+            console.log('status for failing: ', this.status);
+            // reject(xhr.status);
+            // access issue, redirect to login
+            alert("You need to be logged in or with an access to view this page.");
+            window.location.replace(ROOT_FE_URL + '/login.html');
+        }
+    }
+      
+    xhr.ontimeout = function () {
+        reject('timeout')
+      }
+
+    xhr.send();
+}
+
+displayCategories = (list) => {
+    console.log('list: ', [...list]);
+
+    const dropdown = document.getElementById("category");
+
+    list.forEach(function(element) {
+        console.log(element);
+
+        const opt = document.createElement("option"); 
+        opt.text = element.name;
+        opt.value = element.id;
+        dropdown.options.add(opt);
+        
+    });
+
 }

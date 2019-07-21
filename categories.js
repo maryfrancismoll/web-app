@@ -1,5 +1,5 @@
-const ROOT_API_URL = 'http://localhost:9090';
-const ROOT_FE_URL = 'http://localhost:9191/web-app';
+// const ROOT_API_URL = 'http://localhost:9090';
+// const ROOT_FE_URL = 'http://localhost:9191/web-app';
 
 const getToken = () => {
     //get token from session storage
