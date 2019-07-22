@@ -13,18 +13,24 @@
         
     </head>
     <body onload="getAllCategories()">
-        <nav class="navbar navbar-light bg-light justify-content-between navbar-toggleable-sm">
-            <a class="navbar-brand" href="#">Homes & Spaces</a>
+        <nav class="navbar navbar-expand-sm bg-light">
+                <a class="navbar-brand" href="home.html">s &nbsp;p &nbsp;a &nbsp;c &nbsp;e &nbsp;s</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
             <div id="navbarNavDropdown" class="navbar-collapse">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="home.html">Browse </a>
+                    <li class="nav-item active">
+                            <a class="nav-link" href="#">About </span></a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">Contact </span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Post</span></a>
+                        <a class="nav-link" href="available.html">Browse </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="newspace.html">Post</span></a>
                     </li>
                 </ul>
                 <ul class="navbar-nav">
@@ -34,30 +40,35 @@
                     <li class="nav-item d-inline-block active">
                         <a class="nav-link" href="categories.html">Categories</a>
                     </li>
-                    <button onclick="logout()">Logout</button>
+                    <input type="button" onclick="logout();" class="btn btn-warning" value="Logout">
                 </ul>
             </div>
         </nav>
-        <div id="new-category-div">
+        <div class="jumbotron">
+            <h3>Categories</h3>    
+        </div>
+
+        <div class="container" id="new-category-div">
             <h3>Add new category</h3>
-            <form id="newCategoryForm" onsubmit="return false;">
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" class="form-control" id="name" placeholder="Name">
+            <form class="form-inline" id="newCategoryForm" onsubmit="return false;">
+                <div class="form-check mb-2 mr-sm-2">
+                    <label for="name" class="mr-sm-2">Name</label>
+                    <input type="text" class="form-control mb-2 mr-sm-2"  id="name" placeholder="Name">
                 </div>
-                <div class="form-group">
-                    <label for="lastname">Description</label>
-                    <input type="text" class="form-control" id="description" placeholder="Description">
+                <div class="form-check mb-2 mr-sm-2">   
+                    <label for="description" class="mr-sm-2">Description</label>
+                    <input type="text" class="form-control mb-2 mr-sm-2"  id="description" placeholder="Description">
                 </div>
-                <button type="submit" onclick="saveNewCategory();" class="btn btn-primary">Save</button>
+
+                <div class="form-check mb-2 mr-sm-2">
+                    <button type="submit" onclick="saveNewCategory();" class="btn btn-primary">Save</button>
+                </div>
+
             </form>
         </div>
-        <div class="jumbotron">
-            <h3>Categories</h3>
-            
-        </div>
-        <div id="categories-div">
 
-            </div>
+        <div class="container" id="categories-div">
+
+        </div>
     </body>
 </html>

@@ -11,18 +11,24 @@
         <script src="spaces.js"></script>
     </head>
     <body onload="initializeSpaceForm()">
-        <nav class="navbar navbar-light bg-light justify-content-between navbar-toggleable-sm">
-            <a class="navbar-brand" href="#">Homes & Spaces</a>
+        <nav class="navbar navbar-expand-sm bg-light">
+            <a class="navbar-brand" href="home.html">s &nbsp;p &nbsp;a &nbsp;c &nbsp;e &nbsp;s</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
             <div id="navbarNavDropdown" class="navbar-collapse">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="home.html">Browse </a>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">About </span></a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link active" href="#">Post</a>
+                        <a class="nav-link" href="#">Contact </span></a>
+                    </li>                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="available.html">Browse </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link active" href="newspace.html">Post</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav">
@@ -38,10 +44,68 @@
                         }
                         
                     </script>
-                    <button onclick="logout()">Logout</button>
+                    <input type="button" onclick="logout();" class="btn btn-warning" value="Logout">
                 </ul>
             </div>
         </nav>
+
+        <div class="container py-3">
+            <div class="row">
+                <div class="mx-auto col-sm-9">
+                    <!-- form user info -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="mb-0">Post New Space</h4>
+                        </div>
+                        <div class="card-body">
+                            <form class="form" role="form" autocomplete="off">
+                                <div class="form-group row">
+                                    <label class="col-lg-3 col-form-label form-control-label">Title</label>
+                                    <div class="col-lg-9">
+                                        <input class="form-control" id="title" type="text">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-lg-3 col-form-label form-control-label">Category</label>
+                                    <div class="col-lg-9">
+                                        <select class="form-control" id="category">
+                                        </select>   
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-lg-3 col-form-label form-control-label">Daily Rate</label>
+                                    <div class="col-lg-9">
+                                        <input class="form-control" type="text" id="dailyRate">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-lg-3 col-form-label form-control-label">Description</label>
+                                    <div class="col-lg-9">
+                                        <input class="form-control" type="text" id="description">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-lg-3 col-form-label form-control-label">Address</label>
+                                    <div class="col-lg-9">
+                                        <input class="form-control" type="text" id="address">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-lg-3 col-form-label form-control-label"></label>
+                                    <div class="col-lg-9">
+                                        <input type="reset" class="btn btn-secondary" value="Cancel">
+                                        <input type="button" onclick="saveNewSpace();" class="btn btn-primary" value="Save">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- /form user info -->
+                </div>
+            </div>
+        </div>
+
+        <!--
         <div id="space-div" class="jumbotron">
             <h3>Post New Space</h3>
             <form id="newSpaceForm" onsubmit="return false;">
@@ -52,7 +116,7 @@
                 <div class="form-group">
                     <label for="category">Category</label>
                     <select class="form-control" id="category">
-                        <!-- to populate the drop down, check this link https://www.codebyamir.com/blog/populate-a-select-dropdown-list-with-json -->
+                        
                     </select>
                 </div>
                 <div class="form-group">
@@ -67,16 +131,10 @@
                     <label for="address">Address</label>
                     <input type="text" class="form-control" id="address" placeholder="Address">
                 </div>
-                <!-- <div class="form-group">
-                    <label for="availableFrom">Available From </label>
-                    <input type="datetime" class="form-control" id="availableFrom" placeholder="Available From">
-                </div>
-                <div class="form-group">
-                    <label for="availableTo">Available To</label>
-                    <input type="datetime" class="form-control" id="availableTo" placeholder="Available To">
-                </div> -->
+                
                 <button type="submit" onclick="saveNewSpace();" class="btn btn-primary">Save</button>
             </form>
         </div>
+    -->
     </body>
 </html>

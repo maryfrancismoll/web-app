@@ -11,18 +11,22 @@
         <script src="available.js"></script>
     </head>
     <body onload="getAvailableSpaces();">
-        <!-- <div class="container">
-            <h1>Homes & Spaces <small>by Kitchie</small></h1> 
-        </div> -->
-        <nav class="navbar navbar-light bg-light justify-content-between navbar-toggleable-sm">
-            <a class="navbar-brand" href="#">Homes & Spaces</a>
+        
+        <nav class="navbar navbar-expand-sm bg-light">
+            <a class="navbar-brand" href="home.html">s &nbsp;p &nbsp;a &nbsp;c &nbsp;e &nbsp;s</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
             <div id="navbarNavDropdown" class="navbar-collapse">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Browse</a>
+                        <a class="nav-link" href="#">About </span></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Contact </span></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="available.html">Browse</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="newspace.html">Post</a>
@@ -41,30 +45,35 @@
                         }
                         
                     </script>
-                    <button onclick="logout()">Logout</button>
+                    <input type="button" onclick="logout();" class="btn btn-warning" value="Logout">
                 </ul>
             </div>
         </nav>
         <div class="jumbotron">
             <h3>Available Spaces </h3>
         </div>
-        <div id="filters-div">
-            <div class="form-group">
-                <label for="category">Category</label>
-                <select class="form-control" id="category">
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="start_date">From</label>
-                <input type="text" class="form-control" id="start_date" placeholder="YYYY-MM-DD hh:mm">
-            </div>
-            <div class="form-group">
-                <label for="end_date">To</label>
-                <input type="text" class="form-control" id="end_date" placeholder="YYYY-MM-DD hh:mm">
-            </div>
-            <button type="submit" onclick="filterList();" class="btn btn-primary">Filter</button>
+        <div class="container" id="filters-div">
+            <form class="form-inline" onsubmit="return false;">
+                <div class="form-check mb-2 mr-sm-2">
+                    <label for="category" class="mr-sm-2">Category:</label>
+                    <select class="form-control mb-2 mr-sm-2" id="category">
+                    </select>
+                </div>
+            
+                <div class="form-check mb-2 mr-sm-2">
+                    <label for="start_date" class="mr-sm-2">Available from:</label>
+                    <input type="text" class="form-control mb-2 mr-sm-2" id="start_date" placeholder="YYYY-MM-DD hh:mm">
+                
+                    <label for="end_date" class="mr-sm-2">to:</label>
+                    <input type="text" class="form-control mb-2 mr-sm-2" id="end_date" placeholder="YYYY-MM-DD hh:mm">
+                </div>
+
+                <div class="form-check mb-2 mr-sm-2">
+                    <button type="submit" onclick="filterList();"" class="btn btn-primary mb-2">Search</button>
+                </div>
+            </form>
         </div>
-        <div id="available-div">
+        <div class="container" id="available-div">
             
         </div>
     </body>

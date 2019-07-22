@@ -78,7 +78,7 @@ displaySpaces = (list) => {
     //get element where the table will be placed
     const spacesDiv = document.getElementById('available-div');
     let tableValue = 
-        '<table class="table table-hover">' + 
+        '<table class="table table-hover table-bordered">' + 
             '<thead>' +
                 '<tr>' + 
                     '<th>Title</th>' + 
@@ -153,14 +153,22 @@ filterList = () => {
     if(start_date !== ''){
         params += 'from=' + start_date + '&';
     }
-    if(end_date.lenth !== ''){
+    if(end_date !== ''){
         params += 'to=' + end_date;
     }
 
+    console.log('params: ', params);
     sendRequestForList('/book?' + params);
+    alert('pause again');
 }
 
 bookSpace = (id) => {
+    //validate start and end dates
+    if (document.getElementById('start_date').value === '' || document.getElementById('end_date').value === ''){
+        alert('Please specify dates. ');
+        return;
+    }
+
     //create the obect
     const booking = {
         spaceId : id,

@@ -108,7 +108,7 @@ displaySpaces = (list) => {
     //get element where the table will be placed
     const spacesDiv = document.getElementById('my-spaces');
     let tableValue = 
-        '<table class="table table-hover">' + 
+        '<table class="table table-hover table-bordered">' + 
             '<thead>' +
                 '<tr>' + 
                     '<th>Title</th>' + 
@@ -137,10 +137,10 @@ displaySpaces = (list) => {
                 '<td id="available-from-'+ element.id +'" style="display:none">' + element.availableFrom + '</td>' +
                 '<td id="available-to-'+ element.id +'" style="display:none">' + element.availableTo + '</td>' +
                 '<td>' + 
-                    '<div id="btns-div">' +
-                        '<button id="edit-'+ element.id +'" onclick="editSpace(' + element.id + ')">Edit</button>' +
+                    '<div id="btns-div-'+ element.id +'">' +
+                        '<button class="btn btn-primary" id="edit-'+ element.id +'" onclick="editSpace(' + element.id + ')">Edit</button>' +
                     '</div>' +
-                    '<button id="delete-'+ element.id +'" onclick="deleteSpace(' + element.id + ')">Delete</button>' +
+                    '<button class="btn btn-outline-danger" id="delete-'+ element.id +'" onclick="deleteSpace(' + element.id + ')">Delete</button>' +
                 '</td>' +
             '</tr>';
     });
@@ -158,19 +158,64 @@ editSpace = (id) => {
 
     //change edit button to save
     const btn = document.getElementById('edit-' + id);
-    const buttonsDiv = document.getElementById('btns-div');
+    const buttonsDiv = document.getElementById('btns-div-' + id);
 
     //check button label
     if(btn.innerHTML === 'Edit'){
         btn.innerHTML = 'Save'; 
+        btn.className = 'btn btn-success';
 
         //add cancel button
-        buttonsDiv.innerHTML += '<button id="cancel-'+ id +'" onclick="cancelEdit(' + id + ')">Cancel</button>';
+        buttonsDiv.innerHTML += '<button class="btn btn-outline-warning" id="cancel-'+ id +'" onclick="cancelEdit(' + id + ')">Cancel</button>';
 
         //change title cell to input
         const titleTd = document.getElementById('title-' + id);
         const titleValue = titleTd.innerHTML;
         titleTd.innerHTML = '<input type="text" id="input-title-' + id + '" value="' + titleValue + '">';
+
+        //change title cell to input
+        const categoryTd = document.getElementById('category-' + id);
+        const categoryText = categoryTd.innerHTML;
+        categoryTd.innerHTML = '';
+
+        //Create and append select list
+        var dropdown = document.createElement("select");
+        dropdown.id = "category-select-" + id;
+        categoryTd.appendChild(dropdown);
+
+        //get categories
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', ROOT_API_URL + '/category', true);
+        xhr.onreadystatechange = function() { // Call a function when the state changes.
+            if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+                // display in table
+                const list = JSON.parse(this.response);
+                //Create and append the options
+                list.forEach(function(element) {
+                    console.log(element);
+
+                    const opt = document.createElement("option"); 
+                    opt.text = element.name;
+                    opt.value = element.id;
+                    console.log(categoryText, ' === ', element.name);
+                    if(categoryText  === element.name) {
+                        opt.selected = true;
+                    }
+                    dropdown.options.add(opt);
+                    
+                });
+            }else if (this.readyState === XMLHttpRequest.DONE && this.status === 401){
+                alert("You need to be logged in or with an access to view this page.");
+                window.location.replace(ROOT_FE_URL + '/login.html');
+            }
+        }
+            
+        xhr.ontimeout = function () {
+            reject('timeout')
+            }
+    
+        xhr.send();
+
 
         //change daily rate cell to input
         const dailyRateTd = document.getElementById('daily-rate-' + id);
@@ -191,7 +236,6 @@ editSpace = (id) => {
         console.log('Save spaces and reload page.');
 
         const userIdTd = document.getElementById('user-id-' + id);
-        const categoryIdTd = document.getElementById('category-id-' + id);
         const availableFromTd = document.getElementById('available-from-' + id);
         const availableToTd = document.getElementById('available-to-' + id);
 
@@ -199,7 +243,7 @@ editSpace = (id) => {
             id: id,
             userId: userIdTd.innerHTML,
             title: document.getElementById('input-title-' + id).value,
-            categoryId: categoryIdTd.innerHTML, //document.getElementById('category-' + id).value,
+            categoryId: document.getElementById('category-select-' + id).value, //document.getElementById('category-' + id).value,
             description: document.getElementById('input-description-' + id).value,
             dailyRate: document.getElementById('input-daily-rate-' + id).value,
             address: document.getElementById('input-address-' + id).value,

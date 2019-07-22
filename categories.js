@@ -48,7 +48,7 @@ const displayCategories = (list) => {
     //get element where the table will be placed
     const categoriesDiv = document.getElementById('categories-div');
     let tableValue = 
-        '<table class="table table-hover">' + 
+        '<table class="table table-hover table-bordered">' + 
             '<thead>' +
                 '<tr>' + 
                     '<th>Name</th>' + 
@@ -65,10 +65,10 @@ const displayCategories = (list) => {
                 '<td id="name-'+ element.id +'">' + element.name + '</td>' +
                 '<td id="description-'+ element.id +'">' + element.description + '</td>' +
                 '<td>' + 
-                    '<div id="btns-div">' +
-                        '<button id="edit-'+ element.id +'" onclick="editCategory(' + element.id + ')">Edit</button>' +
+                    '<div id="btns-div-'+ element.id +'">' +
+                        '<button class="btn btn-primary" id="edit-'+ element.id +'" onclick="editCategory(' + element.id + ')">Edit</button>' +
                     '</div>' +
-                    '<button id="delete-'+ element.id +'" onclick="deleteCategory(' + element.id + ')">Delete</button>' +
+                    '<button class="btn btn-outline-danger" id="delete-'+ element.id +'" onclick="deleteCategory(' + element.id + ')">Delete</button>' +
                 '</td>' +
             '</tr>';
     });
@@ -96,14 +96,15 @@ const saveNewCategory = () => {
 const editCategory = (id) => {
     //change edit button to save
     const btn = document.getElementById('edit-' + id);
-    const buttonsDiv = document.getElementById('btns-div');
+    const buttonsDiv = document.getElementById('btns-div-' + id);
 
     //check button label
     if(btn.innerHTML === 'Edit'){ 
         btn.innerHTML = 'Save'; 
+        btn.classList = "btn btn-success";
 
         //add cancel button
-        buttonsDiv.innerHTML += '<button id="cancel-'+ id +'" onclick="cancelEdit(' + id + ')">Cancel</button>';
+        buttonsDiv.innerHTML += '<button class="btn btn-outline-warning" id="cancel-'+ id +'" onclick="cancelEdit(' + id + ')">Cancel</button>';
 
         //change title cell to input
         const nameTd = document.getElementById('name-' + id);
