@@ -1,5 +1,5 @@
-const ROOT_API_URL = 'http://localhost:9090';
-const ROOT_FE_URL = 'http://localhost:9191/web-app';
+const ROOT_API_URL = 'http://localhost:8080';
+const ROOT_FE_URL = 'http://52.63.137.211/spaces';
 
 loginUser = () => {
     alert('login user');
